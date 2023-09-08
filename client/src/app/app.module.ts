@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    // Added from ngx-bootstrap. Allows for the use of bootstrap components in Angular.
     BrowserAnimationsModule,
   ],
   providers: [],
