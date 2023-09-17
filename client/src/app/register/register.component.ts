@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { User } from '../_models/user';
+import { AccountService } from '../_services/account.service';
 
 @Component({
   selector: 'app-register',
@@ -7,20 +8,29 @@ import { User } from '../_models/user';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  @Input() usersFromHomeComponent : any;
+  // Allows us to pass data from the parent component to the child component.
+  @Input() usersFromHomeComponent: any;
+  // Allows us to emit an event from the child component to the parent component.
+  @Output() cancelRegister = new EventEmitter();
   model: any = {};
 
-  constructor() {}
+  constructor(private accountService: AccountService) {}
 
-  ngOnInit(): void {
-  
-  }
+  ngOnInit(): void {}
 
   register() {
-    console.log(this.model);
+    this.accountService.register(this.model).subscribe({
+      next: () => {
+        this.cancel();
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 
+  // Emits an event to the parent component (home.component.html).
   cancel() {
-    console.log('cancelled');
+    this.cancelRegister.emit(false);
   }
 }

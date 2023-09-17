@@ -10,7 +10,7 @@ export class HomeComponent implements OnInit {
   registerMode = false;
   users: any;
 
-  constructor(private http : HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
     this.getUsers();
@@ -27,5 +27,10 @@ export class HomeComponent implements OnInit {
       error: (error) => console.log(error),
       complete: () => console.log('Request has completed'),
     });
+  }
+
+  // Hides the registration form.
+  cancelRegisterMode(event: boolean) {
+    this.registerMode = event;
   }
 }
