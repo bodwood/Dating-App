@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
 import { User } from '../_models/user';
+import { Router } from '@angular/router';
 
 // Allows for services to be injected into components.
 // Services are Singleton objects that get instantiated only once during the lifetime of an application.
